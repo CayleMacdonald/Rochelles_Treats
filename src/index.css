@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --cream-bg: #fff8e8;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: var(--cream-bg);
+    color: #3d1f2a;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  h1, h2, h3, h4 {
+    font-family: 'Fredoka', sans-serif;
+  }
+}
+
+@layer components {
+  .font-heading {
+    font-family: 'Pacifico', cursive;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-sweet-500 px-6 py-3 font-display font-semibold text-white shadow-lg shadow-sweet-500/30 transition-all duration-300 hover:bg-sweet-600 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .btn-whatsapp {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-whatsapp-500 px-6 py-3 font-display font-semibold text-white shadow-lg shadow-whatsapp-500/30 transition-all duration-300 hover:bg-whatsapp-600 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-sweet-500 bg-white/80 px-6 py-3 font-display font-semibold text-sweet-600 transition-all duration-300 hover:bg-sweet-500 hover:text-white hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .card-base {
+    @apply rounded-[28px] bg-white shadow-xl shadow-sweet-900/5;
+  }
+  .section-pad {
+    @apply px-4 py-14 sm:px-6 sm:py-20 lg:px-12;
+  }
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer utilities {
+  .wavy-divider {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23fff8e8' d='M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L0,120Z'%3E%3C/path%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+  .text-stroke-cream {
+    -webkit-text-stroke: 2px #fff8e8;
+    paint-order: stroke fill;
+  }
+  .dotted-bg {
+    background-image: radial-gradient(rgba(255, 158, 196, 0.3) 2px, transparent 2px);
+    background-size: 26px 26px;
+  }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+}
