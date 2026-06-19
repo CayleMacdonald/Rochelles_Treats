@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import {
   ShoppingCart, MessageCircle, UtensilsCrossed, Truck, Heart,
-  ChefHat, Star, MapPin, ArrowRight, Quote, Clock, Award
+  ChefHat, Star, ArrowRight, Quote, Clock, Award
 } from 'lucide-react';
 import {
   HeroIllustration, PastaIllustration, ChickenSchnitzelIllustration,
@@ -104,7 +104,7 @@ export default function HomePage() {
       <section className="relative min-h-screen flex items-center pt-20 pb-16 bg-gradient-to-br from-cream-100 via-cream-50 to-brand-50 overflow-hidden">
         {/* Decorative elements */}
         <DecorativeLeaf className="absolute top-32 left-8 w-16 h-24 opacity-30 animate-float-slow" />
-        <DecorativeLeaf className="absolute bottom-40 right-12 w-12 h-18 opacity-20 animate-float" style={{ animationDelay: '2s' }} />
+        <DecorativeLeaf className="absolute bottom-40 right-12 w-12 h-18 opacity-20 animate-float" />
         <DecorativeCircle className="absolute top-20 right-1/4 w-32 h-32 opacity-30" />
         <DecorativeCircle className="absolute bottom-24 left-1/4 w-24 h-24 opacity-20" />
 

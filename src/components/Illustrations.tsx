@@ -1,5 +1,5 @@
 // Elegant, professional SVG food illustrations for Rochelle's Treats
-import React from 'react';
+// Professional food illustrations for Rochelle's Treats
 
 export function PastaIllustration({ className = '' }: { className?: string }) {
   return (

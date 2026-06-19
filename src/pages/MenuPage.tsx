@@ -7,7 +7,7 @@ import { MENU_ITEMS, CATEGORIES, BADGE_CONFIG, MenuItem } from '../data/menu';
 import { useCart } from '../context/CartContext';
 import {
   PastaIllustration, ChickenSchnitzelIllustration, CottagePieIllustration,
-  WingsIllustration, ChickenBowlIllustration, SteakIllustration
+  WingsIllustration, ChickenBowlIllustration, SteakIllustration, DecorativeCircle
 } from '../components/Illustrations';
 
 const ILLUSTRATIONS: Record<string, React.FC<{ className?: string }>> = {

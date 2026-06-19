@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import {
   Mail, Phone, MessageCircle, Clock, Truck, ShoppingBag, Calendar,
-  ChefHat, Heart, Star, ArrowRight, MapPin, Send
+  ChefHat, Heart, Star, MapPin, Send
 } from 'lucide-react';
 import { BakeryBasketIllustration, DecorativeCircle } from '../components/Illustrations';
 
