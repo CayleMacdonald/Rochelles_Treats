@@ -6,11 +6,9 @@ export interface MenuItem {
   prices: { label: string; amount: number }[];
   badge?: 'bestseller' | 'popular' | 'veg' | 'spicy' | 'new';
   emoji: string;
-  color: string;
 }
 
 export const MENU_ITEMS: MenuItem[] = [
-  // Pasta
   {
     id: 'pasta-chicken',
     category: 'pasta',
@@ -22,7 +20,6 @@ export const MENU_ITEMS: MenuItem[] = [
     ],
     badge: 'bestseller',
     emoji: '🍝',
-    color: 'from-buttercup-400 to-buttercup-300',
   },
   {
     id: 'pasta-mushroom',
@@ -35,9 +32,7 @@ export const MENU_ITEMS: MenuItem[] = [
     ],
     badge: 'veg',
     emoji: '🍄',
-    color: 'from-lagoon-400 to-lagoon-300',
   },
-  // Chicken
   {
     id: 'chicken-schnitzel',
     category: 'chicken',
@@ -46,7 +41,6 @@ export const MENU_ITEMS: MenuItem[] = [
     prices: [{ label: 'Portion', amount: 75 }],
     badge: 'popular',
     emoji: '🍗',
-    color: 'from-cherry-400 to-sweet-400',
   },
   {
     id: 'chicken-bbq-wings',
@@ -56,7 +50,6 @@ export const MENU_ITEMS: MenuItem[] = [
     prices: [{ label: 'Portion', amount: 70 }],
     badge: 'popular',
     emoji: '🍖',
-    color: 'from-orange-400 to-amber-300',
   },
   {
     id: 'chicken-spicy-wings',
@@ -66,9 +59,7 @@ export const MENU_ITEMS: MenuItem[] = [
     prices: [{ label: 'Portion', amount: 70 }],
     badge: 'spicy',
     emoji: '🌶️',
-    color: 'from-cherry-500 to-cherry-400',
   },
-  // Hearty
   {
     id: 'chicken-bowl',
     category: 'hearty',
@@ -77,7 +68,6 @@ export const MENU_ITEMS: MenuItem[] = [
     prices: [{ label: 'Portion', amount: 60 }],
     badge: 'popular',
     emoji: '🥘',
-    color: 'from-amber-400 to-buttercup-300',
   },
   {
     id: 'cottage-pie',
@@ -86,7 +76,6 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'Savory mince layered with creamy mashed potato and golden melted cheese. Pure comfort.',
     prices: [{ label: 'Portion', amount: 65 }],
     emoji: '🥧',
-    color: 'from-sweet-400 to-sweet-300',
   },
   {
     id: 'phutu-pap',
@@ -95,7 +84,6 @@ export const MENU_ITEMS: MenuItem[] = [
     description: 'A traditional South African favourite — slow-cooked chuck meat, phutu pap, and rich tomato gravy.',
     prices: [{ label: 'Portion', amount: 70 }],
     emoji: '🍲',
-    color: 'from-orange-500 to-amber-400',
   },
   {
     id: 'steak-mash',
@@ -105,7 +93,6 @@ export const MENU_ITEMS: MenuItem[] = [
     prices: [{ label: 'Portion', amount: 95 }],
     badge: 'bestseller',
     emoji: '🥩',
-    color: 'from-red-600 to-cherry-500',
   },
 ];
 
@@ -117,9 +104,9 @@ export const CATEGORIES = [
 ];
 
 export const BADGE_CONFIG: Record<string, { label: string; color: string }> = {
-  bestseller: { label: 'Best Seller', color: 'bg-buttercup-400 text-gray-900' },
-  popular: { label: 'Popular', color: 'bg-cherry-500 text-white' },
-  veg: { label: 'Vegetarian', color: 'bg-green-500 text-white' },
+  bestseller: { label: 'Best Seller', color: 'bg-brand-500 text-white' },
+  popular: { label: 'Popular', color: 'bg-terracotta-500 text-white' },
+  veg: { label: 'Vegetarian', color: 'bg-sage-500 text-white' },
   spicy: { label: 'Spicy!', color: 'bg-orange-500 text-white' },
-  new: { label: 'New!', color: 'bg-lagoon-500 text-white' },
+  new: { label: 'New!', color: 'bg-brand-400 text-white' },
 };

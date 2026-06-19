@@ -4,67 +4,72 @@
 
 @layer base {
   :root {
-    --cream-bg: #fff8e8;
+    --cream-bg: #f9f6f0;
+    --brand-primary: #a66e3b;
+    --brand-dark: #6d4626;
   }
   html {
     scroll-behavior: smooth;
   }
   body {
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     background-color: var(--cream-bg);
-    color: #3d1f2a;
+    color: #382413;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
   }
   h1, h2, h3, h4 {
-    font-family: 'Fredoka', sans-serif;
+    font-family: 'Playfair Display', Georgia, serif;
   }
 }
 
 @layer components {
-  .font-heading {
-    font-family: 'Pacifico', cursive;
+  .font-display {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+  .font-accent {
+    font-family: 'DM Sans', sans-serif;
   }
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-sweet-500 px-6 py-3 font-display font-semibold text-white shadow-lg shadow-sweet-500/30 transition-all duration-300 hover:bg-sweet-600 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-brand-500 px-6 py-3 font-accent font-semibold text-white shadow-lg shadow-brand-500/20 transition-all duration-300 hover:bg-brand-600 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0;
   }
   .btn-whatsapp {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-whatsapp-500 px-6 py-3 font-display font-semibold text-white shadow-lg shadow-whatsapp-500/30 transition-all duration-300 hover:bg-whatsapp-600 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-whatsapp-500 px-6 py-3 font-accent font-semibold text-white shadow-lg shadow-whatsapp-500/20 transition-all duration-300 hover:bg-whatsapp-600 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0;
   }
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-sweet-500 bg-white/80 px-6 py-3 font-display font-semibold text-sweet-600 transition-all duration-300 hover:bg-sweet-500 hover:text-white hover:-translate-y-0.5 active:translate-y-0;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border-2 border-brand-500 bg-white/80 px-6 py-3 font-accent font-semibold text-brand-600 transition-all duration-300 hover:bg-brand-500 hover:text-white hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 font-accent font-medium text-brand-700 transition-all duration-300 hover:bg-brand-50;
   }
   .card-base {
-    @apply rounded-[28px] bg-white shadow-xl shadow-sweet-900/5;
+    @apply rounded-2xl bg-white shadow-lg shadow-black/[0.04] border border-cream-300/50;
+  }
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:shadow-black/[0.06] hover:-translate-y-1;
   }
   .section-pad {
-    @apply px-4 py-14 sm:px-6 sm:py-20 lg:px-12;
+    @apply px-4 py-16 sm:px-6 sm:py-24 lg:px-12;
   }
   .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+    transform: translateY(32px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .reveal.is-visible {
     opacity: 1;
     transform: translateY(0);
   }
+  .text-gradient {
+    @apply bg-gradient-to-r from-brand-600 to-terracotta-500 bg-clip-text text-transparent;
+  }
+  .divider-line {
+    @apply w-16 h-0.5 bg-brand-400 rounded-full;
+  }
 }
 
 @layer utilities {
-  .wavy-divider {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120' preserveAspectRatio='none'%3E%3Cpath fill='%23fff8e8' d='M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L0,120Z'%3E%3C/path%3E%3C/svg%3E");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-  }
-  .text-stroke-cream {
-    -webkit-text-stroke: 2px #fff8e8;
-    paint-order: stroke fill;
-  }
-  .dotted-bg {
-    background-image: radial-gradient(rgba(255, 158, 196, 0.3) 2px, transparent 2px);
-    background-size: 26px 26px;
-  }
   .scrollbar-hide::-webkit-scrollbar { display: none; }
   .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 }

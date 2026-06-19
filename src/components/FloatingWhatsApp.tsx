@@ -7,9 +7,9 @@ export default function FloatingWhatsApp() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
-      className="fixed bottom-6 right-5 z-50 flex items-center justify-center w-14 h-14 rounded-full bg-whatsapp-500 text-white shadow-xl shadow-whatsapp-500/40 animate-pulse-ring hover:scale-110 transition-transform"
+      className="fixed bottom-6 right-5 z-50 flex items-center justify-center w-12 h-12 rounded-full bg-whatsapp-500 text-white shadow-lg shadow-whatsapp-500/30 animate-pulse-ring hover:scale-110 transition-transform duration-300"
     >
-      <MessageCircle className="w-7 h-7 fill-white" />
+      <MessageCircle className="w-5 h-5 fill-white" strokeWidth={1.5} />
     </a>
   );
 }

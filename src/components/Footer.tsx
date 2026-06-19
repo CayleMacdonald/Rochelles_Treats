@@ -1,34 +1,36 @@
 import { Link } from 'react-router-dom';
-import { Heart, Mail, Phone, Clock, Instagram, Facebook, MessageCircle, Music } from 'lucide-react';
+import { Mail, Phone, Clock, Instagram, Facebook, MessageCircle, Music, MapPin } from 'lucide-react';
 
 export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-900 text-gray-300 pt-14 pb-8">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+    <footer className="bg-brand-900 text-cream-300">
+      {/* Top wave */}
+      <div className="h-16 bg-cream-100" style={{ clipPath: 'ellipse(60% 100% at 50% 100%)' }} />
+
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-8 pb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2.5 mb-4">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-sweet-400 to-sweet-600 flex items-center justify-center shadow-lg">
-                <Heart className="w-5 h-5 text-white fill-white" />
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-10 h-10 rounded-full bg-brand-500 flex items-center justify-center shadow-md">
+                <span className="font-display text-white text-lg font-medium italic">R</span>
               </div>
               <div>
-                <span className="font-heading text-white text-lg block leading-none">Rochelle's</span>
-                <span className="font-display text-xs font-semibold text-sweet-400 tracking-widest uppercase block">Treats</span>
+                <span className="font-display text-cream-100 text-lg font-medium italic block leading-none">Rochelle's</span>
+                <span className="font-accent text-[10px] font-semibold text-brand-300 tracking-[0.2em] uppercase block">Treats</span>
               </div>
             </div>
-            <p className="font-body text-sm leading-relaxed text-gray-400">
-              Delicious Food, Happy Hearts! Homemade comfort food made with love and quality ingredients.
+            <p className="font-body text-sm leading-relaxed text-cream-400/80 mb-6">
+              Homemade comfort food made with love. Freshly prepared meals, hearty flavours, and warm hospitality.
             </p>
-            {/* Social */}
-            <div className="flex gap-3 mt-5">
+            <div className="flex gap-2.5">
               {[
-                { icon: MessageCircle, href: 'https://wa.me/27814654641', label: 'WhatsApp', color: 'hover:text-whatsapp-400' },
-                { icon: Facebook, href: '#', label: 'Facebook', color: 'hover:text-blue-400' },
-                { icon: Instagram, href: '#', label: 'Instagram', color: 'hover:text-pink-400' },
-                { icon: Music, href: '#', label: 'TikTok', color: 'hover:text-cyan-400' },
+                { icon: MessageCircle, href: 'https://wa.me/27814654641', label: 'WhatsApp', color: 'hover:bg-whatsapp-500 hover:text-white' },
+                { icon: Facebook, href: '#', label: 'Facebook', color: 'hover:bg-blue-600 hover:text-white' },
+                { icon: Instagram, href: '#', label: 'Instagram', color: 'hover:bg-pink-600 hover:text-white' },
+                { icon: Music, href: '#', label: 'TikTok', color: 'hover:bg-cyan-600 hover:text-white' },
               ].map(({ icon: Icon, href, label, color }) => (
                 <a
                   key={label}
@@ -36,7 +38,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className={`w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 transition-all duration-200 hover:bg-gray-700 ${color} hover:scale-110`}
+                  className={`w-9 h-9 rounded-full bg-brand-800 flex items-center justify-center text-cream-400 transition-all duration-300 hover:scale-110 ${color}`}
                 >
                   <Icon className="w-4 h-4" />
                 </a>
@@ -46,21 +48,20 @@ export default function Footer() {
 
           {/* Quick links */}
           <div>
-            <h3 className="font-display font-bold text-white mb-4">Quick Links</h3>
-            <ul className="space-y-2.5">
+            <h3 className="font-display text-cream-100 text-base font-medium mb-5">Quick Links</h3>
+            <ul className="space-y-3">
               {[
                 { to: '/', label: 'Home' },
-                { to: '/menu', label: 'Menu' },
+                { to: '/menu', label: 'Our Menu' },
                 { to: '/about', label: 'About Us' },
-                { to: '/contact', label: 'Contact' },
                 { to: '/menu', label: 'Order Online' },
               ].map(({ to, label }) => (
                 <li key={label}>
                   <Link
                     to={to}
-                    className="font-body text-sm text-gray-400 hover:text-sweet-400 transition-colors flex items-center gap-1.5 group"
+                    className="font-body text-sm text-cream-400/80 hover:text-cream-100 transition-colors duration-300 flex items-center gap-2 group"
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-sweet-500/50 group-hover:bg-sweet-400 transition-colors" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 group-hover:bg-cream-300 transition-colors" />
                     {label}
                   </Link>
                 </li>
@@ -70,24 +71,30 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-display font-bold text-white mb-4">Contact Us</h3>
-            <ul className="space-y-3">
+            <h3 className="font-display text-cream-100 text-base font-medium mb-5">Contact</h3>
+            <ul className="space-y-3.5">
               <li className="flex items-start gap-3">
-                <Mail className="w-4 h-4 mt-0.5 text-sweet-400 shrink-0" />
-                <a href="mailto:rochellegalant4@gmail.com" className="font-body text-sm text-gray-400 hover:text-sweet-400 transition-colors break-all">
+                <Mail className="w-4 h-4 mt-0.5 text-brand-400 shrink-0" strokeWidth={1.5} />
+                <a href="mailto:rochellegalant4@gmail.com" className="font-body text-sm text-cream-400/80 hover:text-cream-100 transition-colors break-all">
                   rochellegalant4@gmail.com
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="w-4 h-4 text-sweet-400 shrink-0" />
-                <a href="tel:+27814654641" className="font-body text-sm text-gray-400 hover:text-sweet-400 transition-colors">
+                <Phone className="w-4 h-4 text-brand-400 shrink-0" strokeWidth={1.5} />
+                <a href="tel:+27814654641" className="font-body text-sm text-cream-400/80 hover:text-cream-100 transition-colors">
                   081 465 4641
                 </a>
               </li>
               <li className="flex items-start gap-3">
-                <Clock className="w-4 h-4 mt-0.5 text-sweet-400 shrink-0" />
-                <span className="font-body text-sm text-gray-400">
+                <Clock className="w-4 h-4 mt-0.5 text-brand-400 shrink-0" strokeWidth={1.5} />
+                <span className="font-body text-sm text-cream-400/80">
                   Mon – Sun<br />10:00 AM – 7:00 PM
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
+                <MapPin className="w-4 h-4 mt-0.5 text-brand-400 shrink-0" strokeWidth={1.5} />
+                <span className="font-body text-sm text-cream-400/80">
+                  Collection & Delivery<br />Available
                 </span>
               </li>
             </ul>
@@ -95,17 +102,17 @@ export default function Footer() {
 
           {/* Newsletter */}
           <div>
-            <h3 className="font-display font-bold text-white mb-4">Weekly Specials</h3>
-            <p className="font-body text-sm text-gray-400 mb-4">Get updates on new items and specials directly to your inbox.</p>
+            <h3 className="font-display text-cream-100 text-base font-medium mb-5">Stay Updated</h3>
+            <p className="font-body text-sm text-cream-400/80 mb-4">Get weekly specials and new menu items delivered to your inbox.</p>
             <form onSubmit={(e) => e.preventDefault()} className="flex flex-col gap-2">
               <input
                 type="email"
                 placeholder="Your email address"
-                className="w-full rounded-xl bg-gray-800 border border-gray-700 px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-sweet-500 transition-colors"
+                className="w-full rounded-lg bg-brand-800 border border-brand-700 px-4 py-2.5 text-sm text-cream-100 placeholder-brand-500 focus:outline-none focus:border-brand-500 transition-colors font-body"
               />
               <button
                 type="submit"
-                className="w-full rounded-xl bg-sweet-500 hover:bg-sweet-600 text-white font-display font-semibold text-sm py-2.5 transition-colors"
+                className="w-full rounded-lg bg-brand-500 hover:bg-brand-400 text-cream-50 font-accent font-semibold text-sm py-2.5 transition-colors"
               >
                 Subscribe
               </button>
@@ -113,13 +120,13 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-gray-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
-          <p className="font-body text-xs text-gray-500">
+        {/* Bottom bar */}
+        <div className="border-t border-brand-800 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+          <p className="font-body text-xs text-brand-500">
             &copy; {year} Rochelle's Treats. All rights reserved.
           </p>
-          <p className="font-body text-xs text-gray-500 flex items-center gap-1">
-            Made with <Heart className="w-3 h-3 text-sweet-500 fill-sweet-500" /> for happy hearts
+          <p className="font-body text-xs text-brand-500 italic">
+            Delicious food, happy hearts
           </p>
         </div>
       </div>
