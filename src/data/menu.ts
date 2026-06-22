@@ -104,9 +104,9 @@ export const CATEGORIES = [
 ];
 
 export const BADGE_CONFIG: Record<string, { label: string; color: string }> = {
-  bestseller: { label: 'Best Seller', color: 'bg-brand-500 text-white' },
-  popular: { label: 'Popular', color: 'bg-terracotta-500 text-white' },
-  veg: { label: 'Vegetarian', color: 'bg-sage-500 text-white' },
-  spicy: { label: 'Spicy!', color: 'bg-orange-500 text-white' },
-  new: { label: 'New!', color: 'bg-brand-400 text-white' },
+  bestseller: { label: 'Best Seller', color: 'bg-gold-500 text-ink-900' },
+  popular: { label: 'Popular', color: 'bg-cerise-500 text-white' },
+  veg: { label: 'Vegetarian', color: 'bg-ink-700 text-ink-200' },
+  spicy: { label: 'Spicy!', color: 'bg-cerise-700 text-white' },
+  new: { label: 'New!', color: 'bg-gold-400 text-ink-900' },
 };
