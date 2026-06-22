@@ -4,17 +4,28 @@
 
 @layer base {
   :root {
-    --cream-bg: #f9f6f0;
-    --brand-primary: #a66e3b;
-    --brand-dark: #6d4626;
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #141414;
+    --bg-card: #1a1a1a;
+    --cerise: #de3163;
+    --gold: #e5b520;
+    --ink-100: #f6f6f6;
+    --ink-200: #e7e7e7;
+    --ink-300: #d1d1d1;
+    --ink-400: #b0b0b0;
+    --ink-500: #888888;
+    --ink-600: #6d6d6d;
+    --ink-700: #5d5d5d;
+    --ink-800: #4f4f4f;
+    --ink-900: #454545;
   }
   html {
     scroll-behavior: smooth;
   }
   body {
     font-family: 'Inter', system-ui, sans-serif;
-    background-color: var(--cream-bg);
-    color: #382413;
+    background-color: var(--bg-primary);
+    color: var(--ink-100);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
@@ -31,23 +42,26 @@
   .font-accent {
     font-family: 'DM Sans', sans-serif;
   }
-  .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-brand-500 px-6 py-3 font-accent font-semibold text-white shadow-lg shadow-brand-500/20 transition-all duration-300 hover:bg-brand-600 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0;
+  .font-script {
+    font-family: 'Great Vibes', cursive;
   }
-  .btn-whatsapp {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-whatsapp-500 px-6 py-3 font-accent font-semibold text-white shadow-lg shadow-whatsapp-500/20 transition-all duration-300 hover:bg-whatsapp-600 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0;
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-cerise-500 px-6 py-3 font-accent font-semibold text-white shadow-lg shadow-cerise-500/20 transition-all duration-300 hover:bg-cerise-600 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0;
+  }
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-gold-500 px-6 py-3 font-accent font-semibold text-ink-900 shadow-lg shadow-gold-500/20 transition-all duration-300 hover:bg-gold-400 hover:shadow-xl hover:-translate-y-0.5 active:translate-y-0;
   }
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg border-2 border-brand-500 bg-white/80 px-6 py-3 font-accent font-semibold text-brand-600 transition-all duration-300 hover:bg-brand-500 hover:text-white hover:-translate-y-0.5 active:translate-y-0;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border-2 border-cerise-500 bg-transparent px-6 py-3 font-accent font-semibold text-cerise-400 transition-all duration-300 hover:bg-cerise-500 hover:text-white hover:-translate-y-0.5 active:translate-y-0;
   }
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 font-accent font-medium text-brand-700 transition-all duration-300 hover:bg-brand-50;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 font-accent font-medium text-ink-300 transition-all duration-300 hover:bg-ink-800/50;
   }
   .card-base {
-    @apply rounded-2xl bg-white shadow-lg shadow-black/[0.04] border border-cream-300/50;
+    @apply rounded-2xl bg-ink-900/40 border border-ink-800/60 backdrop-blur-sm;
   }
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-xl hover:shadow-black/[0.06] hover:-translate-y-1;
+    @apply transition-all duration-300 hover:shadow-xl hover:shadow-cerise-500/5 hover:-translate-y-1 hover:border-cerise-500/20;
   }
   .section-pad {
     @apply px-4 py-16 sm:px-6 sm:py-24 lg:px-12;
@@ -61,15 +75,18 @@
     opacity: 1;
     transform: translateY(0);
   }
-  .text-gradient {
-    @apply bg-gradient-to-r from-brand-600 to-terracotta-500 bg-clip-text text-transparent;
-  }
   .divider-line {
-    @apply w-16 h-0.5 bg-brand-400 rounded-full;
+    @apply w-16 h-0.5 bg-cerise-500 rounded-full;
+  }
+  .gold-accent {
+    @apply text-gold-400;
   }
 }
 
 @layer utilities {
   .scrollbar-hide::-webkit-scrollbar { display: none; }
   .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  .text-glow {
+    text-shadow: 0 0 40px rgba(222, 49, 99, 0.15);
+  }
 }
