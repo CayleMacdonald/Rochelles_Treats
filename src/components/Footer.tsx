@@ -10,24 +10,22 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-full bg-cerise-500 flex items-center justify-center shadow-md shadow-cerise-500/20">
-                <span className="font-script text-white text-2xl leading-none -mt-1">R</span>
-              </div>
-              <div>
-                <span className="font-display text-ink-100 text-base font-medium italic block leading-none">Rochelle's Treats</span>
-                <span className="font-accent text-[9px] font-semibold text-gold-400 tracking-[0.25em] uppercase block">Catering</span>
-              </div>
-            </div>
+            <Link to="/" className="inline-block mb-5">
+              <img
+                src="/image.png"
+                alt="Rochelle's Treats Catering"
+                className="h-24 w-auto object-contain"
+              />
+            </Link>
             <p className="font-body text-sm leading-relaxed text-ink-500 mb-6">
               Homemade comfort food made with love. Freshly prepared meals, hearty flavours, and warm hospitality for every occasion.
             </p>
             <div className="flex gap-2.5">
               {[
                 { icon: MessageCircle, href: 'https://wa.me/27814654641', label: 'WhatsApp', color: 'hover:bg-whatsapp-500 hover:text-white' },
-                { icon: Facebook, href: '#', label: 'Facebook', color: 'hover:bg-blue-600 hover:text-white' },
-                { icon: Instagram, href: '#', label: 'Instagram', color: 'hover:bg-pink-600 hover:text-white' },
-                { icon: Music, href: '#', label: 'TikTok', color: 'hover:bg-cyan-600 hover:text-white' },
+                { icon: Facebook, href: '#', label: 'Facebook', color: 'hover:bg-cerise-600 hover:text-white' },
+                { icon: Instagram, href: '#', label: 'Instagram', color: 'hover:bg-cerise-500 hover:text-white' },
+                { icon: Music, href: '#', label: 'TikTok', color: 'hover:bg-ink-600 hover:text-white' },
               ].map(({ icon: Icon, href, label, color }) => (
                 <a
                   key={label}
@@ -118,12 +116,17 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-ink-800/60 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <div className="border-t border-ink-800/60 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <img
+            src="/image.png"
+            alt="Rochelle's Treats Catering"
+            className="h-10 w-auto object-contain opacity-60"
+          />
           <p className="font-body text-xs text-ink-600">
             &copy; {year} Rochelle's Treats Catering. All rights reserved.
           </p>
           <p className="font-body text-xs text-ink-600 italic">
-            Delicious food, happy hearts
+            Homemade with love, made for you
           </p>
         </div>
       </div>

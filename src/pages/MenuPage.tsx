@@ -58,7 +58,7 @@ function MenuItemCard({ item }: { item: MenuItem }) {
 
   return (
     <div className="card-base overflow-hidden card-hover group flex flex-col">
-      <div className="bg-gradient-to-b from-ink-800/50 to-ink-900/30 p-6 flex justify-center relative border-b border-ink-800/40">
+      <div className="bg-gradient-to-b from-ink-700/60 to-ink-800/40 p-6 flex justify-center relative border-b border-ink-700/50">
         {item.badge && (
           <span className={`absolute top-4 right-4 text-[10px] font-accent font-bold px-3 py-1 rounded-full uppercase tracking-wider ${BADGE_CONFIG[item.badge].color}`}>
             {BADGE_CONFIG[item.badge].label}

@@ -57,18 +57,16 @@ export default function AboutPage() {
       <section className="bg-ink-900 section-pad">
         <div className="mx-auto max-w-6xl">
           <div className="grid lg:grid-cols-2 gap-14 items-center">
-            {/* Left side - visual */}
+            {/* Left side - logo */}
             <div className="flex justify-center">
               <div className="relative">
-                <div className="absolute inset-0 rounded-full bg-cerise-500/5 blur-3xl scale-90" />
-                <div className="relative card-base p-10 bg-gradient-to-br from-ink-800/50 to-ink-900/30 flex flex-col items-center">
-                  <div className="w-24 h-24 rounded-full bg-cerise-500 flex items-center justify-center shadow-lg shadow-cerise-500/20 mb-6">
-                    <span className="font-script text-white text-5xl">R</span>
-                  </div>
-                  <div className="text-center">
-                    <h3 className="font-display text-2xl font-medium text-ink-100 mb-2">Rochelle's Treats</h3>
-                    <p className="font-accent text-gold-400 text-xs tracking-[0.25em] uppercase font-semibold">Catering</p>
-                  </div>
+                <div className="absolute inset-0 rounded-full bg-cerise-500/8 blur-3xl scale-110" />
+                <div className="relative card-base p-8 sm:p-10 bg-gradient-to-br from-ink-800/60 to-ink-900/40 flex flex-col items-center">
+                  <img
+                    src="/image.png"
+                    alt="Rochelle's Treats Catering"
+                    className="h-40 sm:h-48 w-auto object-contain mb-6 drop-shadow-lg"
+                  />
                   <div className="absolute -top-4 -right-4 card-base bg-cerise-500 text-white px-4 py-2.5 shadow-lg">
                     <div className="font-display text-2xl font-medium italic leading-none">5+</div>
                     <div className="font-accent text-[10px] font-semibold tracking-wider uppercase">Years</div>

@@ -185,7 +185,7 @@ export default function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
             {SPECIALS.map(({ id, name, desc, price, badge, Illustration, delay }) => (
               <RevealSection key={id} delay={delay} className="card-base overflow-hidden card-hover group">
-                <div className="bg-gradient-to-b from-ink-800/50 to-ink-900/30 p-6 flex justify-center relative border-b border-ink-800/40">
+                <div className="bg-gradient-to-b from-ink-700/60 to-ink-800/40 p-6 flex justify-center relative border-b border-ink-700/50">
                   {badge && (
                     <span className="absolute top-4 right-4 text-[10px] font-accent font-bold px-3 py-1 rounded-full bg-gold-500 text-ink-900 uppercase tracking-wider">
                       {badge}
