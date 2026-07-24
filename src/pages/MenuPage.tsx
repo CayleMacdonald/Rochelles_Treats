@@ -1,37 +1,22 @@
 import { useState, useMemo } from 'react';
 import {
-  ShoppingCart, MessageCircle, Plus, Minus, Heart, X, Star, Clock,
+  ShoppingCart, MessageCircle, Plus, Minus, X, Star, Clock,
   FileText, Trash2, ArrowRight, ChevronDown
 } from 'lucide-react';
 import { MENU_ITEMS, CATEGORIES, BADGE_CONFIG, MenuItem } from '../data/menu';
 import { useCart } from '../context/CartContext';
-import {
-  PastaIllustration, ChickenSchnitzelIllustration, CottagePieIllustration,
-  WingsIllustration, ChickenBowlIllustration, SteakIllustration, DecorativeCircle
-} from '../components/Illustrations';
+import { DecorativeCircle } from '../components/Illustrations';
 
-const ILLUSTRATIONS: Record<string, React.FC<{ className?: string }>> = {
-  'pasta-chicken': PastaIllustration,
-  'pasta-mushroom': PastaIllustration,
-  'chicken-schnitzel': ChickenSchnitzelIllustration,
-  'chicken-bbq-wings': WingsIllustration,
-  'chicken-spicy-wings': WingsIllustration,
-  'chicken-bowl': ChickenBowlIllustration,
-  'cottage-pie': CottagePieIllustration,
-  'phutu-pap': ChickenBowlIllustration,
-  'steak-mash': SteakIllustration,
-};
-
-const DAILY_SPECIALS = [
+const SPECIALS_BANNERS = [
   {
-    name: 'Tuesday Pasta Day',
-    desc: 'Buy any Regular Pasta, get a FREE drink!',
-    badge: 'Tuesday',
+    name: 'Family Combo Trays',
+    desc: 'Feed the whole family from R450 — 6 hearty combos to choose from!',
+    badge: 'Great Value',
   },
   {
-    name: 'Weekend Family Combo',
-    desc: '4 meals + 2 desserts from R280',
-    badge: 'Weekend',
+    name: 'Breakfast Platters',
+    desc: 'Perfect for events & gatherings — from R450 (serves 4–6)',
+    badge: 'Book Now',
   },
 ];
 
@@ -40,9 +25,7 @@ function MenuItemCard({ item }: { item: MenuItem }) {
   const [selectedSize, setSelectedSize] = useState(item.prices[0]);
   const [note, setNote] = useState('');
   const [showNote, setShowNote] = useState(false);
-  const [favorited, setFavorited] = useState(false);
   const [added, setAdded] = useState(false);
-  const Illustration = ILLUSTRATIONS[item.id] ?? PastaIllustration;
 
   const handleAdd = () => {
     addItem({
@@ -56,26 +39,33 @@ function MenuItemCard({ item }: { item: MenuItem }) {
     setTimeout(() => setAdded(false), 1500);
   };
 
+  const badge = item.badge ? BADGE_CONFIG[item.badge] : null;
+
   return (
     <div className="card-base overflow-hidden card-hover group flex flex-col">
-      <div className="bg-gradient-to-b from-ink-700/60 to-ink-800/40 p-6 flex justify-center relative border-b border-ink-700/50">
-        {item.badge && (
-          <span className={`absolute top-4 right-4 text-[10px] font-accent font-bold px-3 py-1 rounded-full uppercase tracking-wider ${BADGE_CONFIG[item.badge].color}`}>
-            {BADGE_CONFIG[item.badge].label}
+      {/* Food photo */}
+      <div className="relative overflow-hidden h-48 bg-ink-800">
+        <img
+          src={item.image}
+          alt={item.name}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink-900/60 via-transparent to-transparent" />
+        {badge && (
+          <span className={`absolute top-3 right-3 text-[10px] font-accent font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow ${badge.color}`}>
+            {badge.label}
           </span>
         )}
-        <button
-          onClick={() => setFavorited(!favorited)}
-          className="absolute top-4 left-4 w-9 h-9 rounded-full bg-ink-900/80 backdrop-blur-sm flex items-center justify-center hover:bg-ink-800 transition-colors"
-          aria-label="Add to favorites"
-        >
-          <Heart className={`w-4 h-4 transition-all ${favorited ? 'fill-cerise-500 text-cerise-500' : 'text-ink-500'}`} strokeWidth={1.5} />
-        </button>
-        <Illustration className="w-32 h-28 group-hover:scale-105 transition-transform duration-500" />
+        {item.note && (
+          <span className="absolute bottom-3 left-3 text-[10px] font-accent font-medium px-2 py-0.5 rounded-full bg-gold-500/90 text-ink-900">
+            {item.note}
+          </span>
+        )}
       </div>
 
-      <div className="p-6 flex flex-col flex-1">
-        <h3 className="font-display text-lg font-medium text-ink-100 mb-2 leading-tight">{item.name}</h3>
+      <div className="p-5 flex flex-col flex-1">
+        <h3 className="font-display text-base font-medium text-ink-100 mb-1.5 leading-tight">{item.name}</h3>
         <p className="font-body text-sm text-ink-500 leading-relaxed mb-4 flex-1">{item.description}</p>
 
         {item.prices.length > 1 ? (
@@ -84,7 +74,7 @@ function MenuItemCard({ item }: { item: MenuItem }) {
               <button
                 key={p.label}
                 onClick={() => setSelectedSize(p)}
-                className={`text-xs font-accent font-semibold px-3.5 py-1.5 rounded-lg transition-all ${
+                className={`text-xs font-accent font-semibold px-3 py-1.5 rounded-lg transition-all ${
                   selectedSize.label === p.label
                     ? 'bg-cerise-500 text-white shadow-md shadow-cerise-500/20'
                     : 'bg-ink-800 text-ink-300 hover:bg-ink-700'
@@ -102,7 +92,7 @@ function MenuItemCard({ item }: { item: MenuItem }) {
           <textarea
             value={note}
             onChange={(e) => setNote(e.target.value)}
-            placeholder="e.g. extra cheese, no onions, spicy please"
+            placeholder="e.g. extra spicy, no onions, allergy notes…"
             className="w-full text-sm rounded-xl border border-ink-700 px-3 py-2.5 mb-3 resize-none focus:outline-none focus:border-cerise-500 transition-colors font-body bg-ink-800/50 text-ink-100"
             rows={2}
           />
@@ -118,11 +108,13 @@ function MenuItemCard({ item }: { item: MenuItem }) {
         <button
           onClick={handleAdd}
           className={`mt-auto w-full rounded-lg px-4 py-2.5 font-accent font-semibold text-sm transition-all flex items-center justify-center gap-2 ${
-            added ? 'bg-gold-500 text-ink-900' : 'bg-cerise-500 text-white hover:bg-cerise-600 shadow-md shadow-cerise-500/20'
+            added
+              ? 'bg-gold-500 text-ink-900'
+              : 'bg-cerise-500 text-white hover:bg-cerise-600 shadow-md shadow-cerise-500/20'
           }`}
         >
           {added ? (
-            <>Added to cart</>
+            <>Added to cart!</>
           ) : (
             <><Plus className="w-4 h-4" strokeWidth={2} /> Add to Cart &middot; R{selectedSize.amount}</>
           )}
@@ -180,7 +172,9 @@ function CartDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
           <div className="flex items-center gap-3">
             <ShoppingCart className="w-5 h-5 text-cerise-400" strokeWidth={1.5} />
             <h2 className="font-display text-lg font-medium text-ink-100">Your Order</h2>
-            <span className="text-xs font-accent font-medium bg-cerise-500/15 text-cerise-400 px-2.5 py-0.5 rounded-full">{items.length} items</span>
+            <span className="text-xs font-accent font-medium bg-cerise-500/15 text-cerise-400 px-2.5 py-0.5 rounded-full">
+              {items.length} {items.length === 1 ? 'item' : 'items'}
+            </span>
           </div>
           <button
             onClick={onClose}
@@ -198,23 +192,22 @@ function CartDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
             </div>
             <h3 className="font-display text-ink-200 font-medium mb-2">Your cart is empty</h3>
             <p className="font-body text-sm text-ink-600 mb-6">Add some delicious meals to get started.</p>
-            <button onClick={onClose} className="btn-primary text-sm">
-              Browse Menu
-            </button>
+            <button onClick={onClose} className="btn-primary text-sm">Browse Menu</button>
           </div>
         ) : (
           <>
             <div className="flex-1 overflow-y-auto p-4 space-y-3">
               {items.map((item) => (
                 <div key={`${item.id}-${item.size}`} className="card-base p-3.5 flex gap-3 items-start">
-                  <div className="w-12 h-12 rounded-xl bg-ink-800 flex items-center justify-center text-xl shrink-0">
-                    {item.name.includes('Pasta') ? '🍝' :
-                     item.name.includes('Wings') ? '🍖' :
-                     item.name.includes('Schnitzel') ? '🍗' :
-                     item.name.includes('Steak') ? '🥩' :
-                     item.name.includes('Cottage') ? '🥧' :
-                     item.name.includes('Pap') ? '🍲' :
-                     item.name.includes('Bowl') ? '🥘' : '🍽️'}
+                  <div className="w-12 h-12 rounded-xl bg-ink-800 flex items-center justify-center text-xl shrink-0 overflow-hidden">
+                    {(() => {
+                      const src = MENU_ITEMS.find((m) => m.id === item.id)?.image;
+                      return src ? (
+                        <img src={src} alt={item.name} className="w-full h-full object-cover" />
+                      ) : (
+                        '🍽️'
+                      );
+                    })()}
                   </div>
                   <div className="flex-1 min-w-0">
                     <h4 className="font-accent font-semibold text-ink-100 text-sm leading-tight">{item.name}</h4>
@@ -225,7 +218,7 @@ function CartDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
                         <button
                           onClick={() => updateQuantity(item.id, item.size, -1)}
                           className="w-7 h-7 rounded-full bg-ink-800 hover:bg-ink-700 flex items-center justify-center text-ink-300 transition-colors"
-                          aria-label="Decrease quantity"
+                          aria-label="Decrease"
                         >
                           <Minus className="w-3.5 h-3.5" strokeWidth={2} />
                         </button>
@@ -233,7 +226,7 @@ function CartDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
                         <button
                           onClick={() => updateQuantity(item.id, item.size, 1)}
                           className="w-7 h-7 rounded-full bg-ink-800 hover:bg-ink-700 flex items-center justify-center text-ink-300 transition-colors"
-                          aria-label="Increase quantity"
+                          aria-label="Increase"
                         >
                           <Plus className="w-3.5 h-3.5" strokeWidth={2} />
                         </button>
@@ -244,7 +237,7 @@ function CartDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
                   <button
                     onClick={() => removeItem(item.id, item.size)}
                     className="w-7 h-7 rounded-full bg-ink-800 hover:bg-ink-700 text-ink-500 hover:text-cerise-400 flex items-center justify-center transition-colors"
-                    aria-label="Remove item"
+                    aria-label="Remove"
                   >
                     <Trash2 className="w-3.5 h-3.5" strokeWidth={1.5} />
                   </button>
@@ -258,7 +251,7 @@ function CartDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
                 <span className="font-accent font-bold text-cerise-400 text-2xl">R{total}</span>
               </div>
               <p className="text-xs text-ink-600 flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5" strokeWidth={1.5} /> Prepared fresh — collection/delivery arranged via WhatsApp
+                <Clock className="w-3.5 h-3.5" strokeWidth={1.5} /> Prepared fresh — collection/delivery confirmed via WhatsApp
               </p>
               <button
                 onClick={handleCheckout}
@@ -267,14 +260,8 @@ function CartDrawer({ open, onClose }: { open: boolean; onClose: () => void }) {
                   submitted ? 'bg-gold-500 text-ink-900' : 'bg-whatsapp-500 hover:bg-whatsapp-600 shadow-whatsapp-500/20'
                 }`}
               >
-                {submitted ? (
-                  <>Order sent!</>
-                ) : submitting ? (
-                  <>Preparing...</>
-                ) : (
-                  <>
-                    <MessageCircle className="w-5 h-5" strokeWidth={2} /> Checkout via WhatsApp
-                  </>
+                {submitted ? <>Order sent!</> : submitting ? <>Preparing...</> : (
+                  <><MessageCircle className="w-5 h-5" strokeWidth={2} /> Checkout via WhatsApp</>
                 )}
               </button>
             </div>
@@ -291,10 +278,10 @@ export default function MenuPage() {
   const { items } = useCart();
   const itemCount = items.reduce((sum, i) => sum + i.quantity, 0);
 
-  const filtered = useMemo(() => {
-    if (active === 'all') return MENU_ITEMS;
-    return MENU_ITEMS.filter((m) => m.category === active);
-  }, [active]);
+  const filtered = useMemo(
+    () => (active === 'all' ? MENU_ITEMS : MENU_ITEMS.filter((m) => m.category === active)),
+    [active]
+  );
 
   return (
     <div className="overflow-x-hidden bg-ink-900 pt-16">
@@ -305,30 +292,32 @@ export default function MenuPage() {
           <DecorativeCircle className="absolute bottom-10 right-10 w-32 h-32" />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 text-center">
-          <span className="font-accent text-cerise-400 font-semibold text-xs tracking-[0.2em] uppercase">Today's Menu</span>
-          <h1 className="font-display text-4xl sm:text-5xl font-medium mt-3 mb-4 text-ink-100">Our Menu</h1>
+          <span className="font-accent text-cerise-400 font-semibold text-xs tracking-[0.2em] uppercase">
+            Fresh Ingredients · Generous Portions · Made With Love
+          </span>
+          <h1 className="font-display text-4xl sm:text-5xl font-medium mt-3 mb-4 text-ink-100">Catering Menu</h1>
           <p className="font-body text-ink-400 max-w-lg mx-auto leading-relaxed">
-            Fresh, homemade meals prepared daily with quality ingredients. Choose your favourite and order.
+            Homemade with love, made for you. From breakfast platters to family combo trays — order online or via WhatsApp.
           </p>
         </div>
       </section>
 
-      {/* Daily specials */}
+      {/* Promo banners */}
       <section className="bg-ink-900 py-6">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {DAILY_SPECIALS.map((special) => (
+            {SPECIALS_BANNERS.map((s) => (
               <div
-                key={special.name}
+                key={s.name}
                 className="bg-gradient-to-r from-cerise-500 to-cerise-400 rounded-xl p-4 flex items-center gap-3 shadow-md"
               >
                 <Star className="w-6 h-6 text-white fill-white shrink-0" strokeWidth={1.5} />
                 <div className="flex-1 text-white">
-                  <h3 className="font-display text-sm font-medium leading-tight">{special.name}</h3>
-                  <p className="font-body text-xs text-white/85">{special.desc}</p>
+                  <h3 className="font-display text-sm font-medium leading-tight">{s.name}</h3>
+                  <p className="font-body text-xs text-white/85">{s.desc}</p>
                 </div>
-                <span className="text-[10px] font-accent font-semibold text-white bg-white/20 px-2.5 py-1 rounded-full uppercase tracking-wider">
-                  {special.badge}
+                <span className="text-[10px] font-accent font-semibold text-white bg-white/20 px-2.5 py-1 rounded-full uppercase tracking-wider shrink-0">
+                  {s.badge}
                 </span>
               </div>
             ))}
@@ -344,7 +333,7 @@ export default function MenuPage() {
               <button
                 key={cat.id}
                 onClick={() => setActive(cat.id)}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-accent font-medium text-sm whitespace-nowrap transition-all shrink-0 ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-xl font-accent font-medium text-sm whitespace-nowrap transition-all shrink-0 ${
                   active === cat.id
                     ? 'bg-cerise-500 text-white shadow-md shadow-cerise-500/20'
                     : 'bg-ink-800 text-ink-300 hover:text-ink-100 border border-ink-700/50'
@@ -366,15 +355,15 @@ export default function MenuPage() {
             ))}
           </div>
 
-          {/* Allergy disclaimer */}
+          {/* Info note */}
           <div className="mt-10 card-base bg-ink-800/30 border border-ink-700/40 p-5 flex items-start gap-3">
             <div className="w-9 h-9 rounded-lg bg-cerise-500/10 flex items-center justify-center shrink-0">
               <FileText className="w-4 h-4 text-cerise-400" strokeWidth={1.5} />
             </div>
             <div>
-              <h4 className="font-accent font-semibold text-ink-200 text-sm mb-1">Food Allergy Disclaimer</h4>
+              <h4 className="font-accent font-semibold text-ink-200 text-sm mb-1">Food Allergy & Catering Info</h4>
               <p className="font-body text-xs text-ink-500 leading-relaxed">
-                Our meals may contain or come into contact with common allergens including dairy, gluten, eggs, nuts, and soy. Please inform us of any allergies when placing your order so we can advise you accordingly.
+                Our meals may contain common allergens including dairy, gluten, eggs, nuts, and soy. Please advise of any dietary requirements when ordering. Combo & platter quantities are approximate. Location: Sky City, Alberton — collection & delivery available. Contact: 081 465 4641.
               </p>
             </div>
           </div>
@@ -387,12 +376,12 @@ export default function MenuPage() {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {[
-                { q: 'Do you offer delivery?', a: 'Yes! We offer both delivery and collection. Delivery fees depend on your location — send us a WhatsApp to confirm.' },
-                { q: 'How fresh is the food?', a: 'Every meal is prepared fresh to order. We never use pre-packaged or frozen meals.' },
-                { q: 'Can I place a special order?', a: 'Absolutely! Custom orders, catering, and event meals are available on request. Just WhatsApp us with the details.' },
-                { q: 'What are your business hours?', a: 'We operate Monday to Sunday, 10:00 AM to 7:00 PM. Orders placed outside these hours will be handled the next day.' },
-                { q: 'Do you have vegetarian options?', a: 'Yes — our Creamy Garlic Mushroom Pasta is vegetarian and we can adjust certain dishes to suit your needs.' },
-                { q: 'How do I pay?', a: 'Payment is arranged via WhatsApp. We accept EFT and cash on delivery/collection.' },
+                { q: 'Do you offer delivery?', a: 'Yes! We offer both delivery and collection from Sky City, Alberton. Delivery fees depend on your area — WhatsApp us to confirm.' },
+                { q: 'How far in advance must I order?', a: 'For regular orders, same day is fine. For platters and event catering, we recommend at least 24–48 hours notice.' },
+                { q: 'Can I customise my order?', a: 'Absolutely! Add a special request note to any item. We do our best to accommodate every request.' },
+                { q: 'What occasions do you cater for?', a: 'Birthdays, family gatherings, anniversaries, baby showers, graduations, corporate events, and any special occasion.' },
+                { q: 'How do I pay?', a: 'We accept EFT and cash on collection or delivery. Payment is confirmed via WhatsApp.' },
+                { q: 'What are your business hours?', a: 'Monday to Sunday, 10:00 AM – 7:00 PM. Orders outside these hours are handled the following day.' },
               ].map(({ q, a }, i) => (
                 <details key={i} className="card-base group p-4 cursor-pointer">
                   <summary className="font-accent font-semibold text-ink-100 text-sm flex items-center justify-between list-none">
@@ -407,7 +396,7 @@ export default function MenuPage() {
         </div>
       </section>
 
-      {/* Floating cart button */}
+      {/* Floating cart */}
       {itemCount > 0 && !cartOpen && (
         <button
           onClick={() => setCartOpen(true)}
